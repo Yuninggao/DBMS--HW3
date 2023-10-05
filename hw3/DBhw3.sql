@@ -14,20 +14,19 @@ left join sell S on P.pid = S.pid
 where S.pid is null;
 
 -- 3. How many customers bought SATA drives but not any routers?
-select count(distinct  C.cid) as customerCount
-from customers C
-join place Pl on C.cid = Pl.cid
-join contain Co on Pl.oid = Co.oid
-join products P on Co.pid = P.pid
-where P.category = 'SATA Drive'
-and C.cid not in(
-
-    select distinct C.cid
-    from customers C
-    join place Pl on C.cid = Pl.cid
-    join contain Co on Pl.oid = Co.oid
-    join products P on Co.pid = P.pid
-    where P.category = 'Router'
+select count(c.cid) as peopleBoughtSata
+from customers c
+join place pl on c.cid = pl.cid
+join contain co on pl.oid = co.oid
+join products p on co.pid = p.pid
+where p.description like  '%SATA%'
+and c.cid not in(
+    select c.cid
+    from customers c
+    join place pl on c.cid = pl.cid
+    join contain co on pl.oid = co.oid
+    join products p on co.pid = p.pid
+    where p.category = 'Router'
 
     );
 
