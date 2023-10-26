@@ -37,8 +37,8 @@ create table address(
     address varchar(255),
     address2 varchar(255),
     district varchar(255),
-    city_id varchar(255),
-    postal_code varchar(255),
+    city_id int(6),
+    postal_code int(10),
     phone int(20),
     foreign key(city_id) references city(city_id)
 );
@@ -103,7 +103,7 @@ create table staff(
 	staff_id int(6)primary key,
     first_name varchar(10),
     last_name varchar(10),
-    address_id varchar(6),
+    address_id int(6),
     email varchar(50),
     store_id int(6),
     active varchar(10),
