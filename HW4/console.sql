@@ -1,12 +1,12 @@
 create table actor(
-	actor_id int(6) primary key,
+    actor_id int(6) primary key,
     first_name varchar(50),
     last_name varchar(50)
 );
 
 
 create table category(
-	category_id INT(6) PRIMARY KEY,
+    category_id INT(6) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     CONSTRAINT chk_category_name CHECK (name IN (
         'Animation', 'Comedy', 'Family', 'Foreign', 'Sci-Fi',
@@ -16,24 +16,24 @@ create table category(
 );
 
 create table country(
-	country_id int(6) primary key,
+    country_id int(6) primary key,
     country varchar(50)
 );
 
 create table language(
-	language_id int(6) primary key,
+   language_id int(6) primary key,
     name varchar(50)
 );
 
 create table city(
-	city_id int (6) primary key,
+    city_id int (6) primary key,
     city varchar (20),
     country_id int(6),
     foreign key(country_id) references country(country_id)
 );
 
 create table address(
-	address_id int (6) primary key,
+    address_id int (6) primary key,
     address varchar(255),
     address2 varchar(255),
     district varchar(255),
@@ -44,13 +44,13 @@ create table address(
 );
 
 create table store(
-	store_id int(6)primary key,
+    store_id int(6)primary key,
     address_id int(6),
     foreign key(address_id)references address(address_id)
 );
 
 create table customer(
-	customer_id int(6) primary key,
+    customer_id int(6) primary key,
     store_id int(6),
     first_name varchar(50),
     last_name varchar(50),
@@ -62,7 +62,7 @@ create table customer(
 );
 
 create table film(
-	film_id int(6) primary key,
+    film_id int(6) primary key,
     tile varchar(50),
     description varchar(255),
     release_year int(6),
@@ -81,8 +81,9 @@ create table film(
 
 );
 create table film_actor(
-	actor_id int(6)primary key,
-    film_id int(6)primary key,
+	actor_id int(6),
+    film_id int(6),
+	primary key(actor_id,film_id),
     foreign key(actor_id) references actor(actor_id),
     foreign key(film_id) references film(film_id)
 );
@@ -115,8 +116,9 @@ create table staff(
 );
 
 create table film_category(
-	film_id int(6)primary key,
-    category_id int (6)primary key,
+	film_id int(6),
+    category_id int (6),
+	primary key(film_id,category_id),
     foreign key(film_id) references film(film_id),
     foreign key(category_id) references category(category_id)
 );
