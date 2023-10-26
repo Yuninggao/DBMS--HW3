@@ -88,7 +88,7 @@ create table film_actor(
 );
 
 create table rental(
-	rental_id int(6),
+	rental_id int(6) primary key,
     rental_date DATE,
     inventory_id int(6),
     customer_id int(6),
